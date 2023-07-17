@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template.html}">
+<head>
+<title>Lista de Livros</title>
+</head>
+
+<body>
+<div layout:fragment="conteudo">
+	<h1>Lista de livros</h1>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th> Título </th>
+				<th> Autor </th>
+				<th> Editora </th>
+				<th> Categoria </th>
+				<th> Ações</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="livro : ${lista}"> 
+				<td th:text="${livro.titulo}" ></td>
+				<td th:text="${livro.autor}" ></td>
+				<td th:text="${livro.editora}" ></td>
+				<td th:text="${livro.categoria}" ></td>
+				<td>
+					<a th:href="@{/livros/formulario?id={id}(id=${livro.id})}">Editar</a>
+					<form action="/livros" method="post">
+						<input type="hidden" name="_method" value="delete">
+						<input type="hidden" name="id" th:value="${livro.id}">
+						<input type="submit" value="Excluir" class="btn btn-primary">			
+					</form>
+				
+				</td>
+			</tr>	
+		</tbody>
+	</table>
+</div>
+	
+</body>
+</html>

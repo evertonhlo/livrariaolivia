@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template.html}"> 
+<head>
+<title>Formulário de cadastro de livros</title>
+</head>
+
+<body>
+
+	<div layout:fragment="conteudo">
+		<h1 >Cadastrar livro</h1>
+	
+	<form method="post" action="/livros" class="form-control" >
+	
+		<input type="hidden" name="_method" value="put" th:if="${livro != null}">
+		<input type="hidden" name="id" th:value="${livro?.id}">
+		
+
+		
+		<label for="titulo">Título</label>
+		<input name="titulo" id="titulo" th:value="${livro?.titulo}" class="form-control form-floating mb-3" placeholder="Digite o título do livro">
+		<br/>
+		
+		<label>Autor</label>
+		<input name="autor" id="autor" th:value="${livro?.autor}" class="form-control form-floating mb-3" placeholder="Digite o nome do(a) autor(a) do livro">
+		<br/>
+		
+		<label>Editora</label>
+		<input name="editora" id="editora" th:value="${livro?.editora}" class="form-control form-floating mb-3" placeholder="Digite o nome da editora do livro">
+		<br/>
+		
+		<label>Categoria:</label>
+		<input name="categoria" id="categoria" th:value="${livro?.categoria}"class="form-control form-floating mb-3" placeholder="Digite uma categoria para o livro">
+		<br/>
+		
+		<input type="submit" name="Cadastrar" class="btn btn-primary">
+	</form>
+	
+</div>
+</body>
+</html>
